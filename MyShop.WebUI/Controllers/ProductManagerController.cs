@@ -41,10 +41,10 @@ namespace MyShop.WebUI.Controllers
             }
             else
             {
-                ProductManagerViewModel viewModel = new ProductManagerViewModel();
-                viewModel.Product = product;
-                viewModel.ProductCategories = productCategories.Collection();
-                return View(viewModel);
+                context.Insert(product);
+                context.Commit();
+
+                return RedirectToAction("Index");
 
             }
         }
@@ -56,7 +56,10 @@ namespace MyShop.WebUI.Controllers
                 return HttpNotFound();
             }else
             {
-                return View(product);
+                ProductManagerViewModel viewModel = new ProductManagerViewModel();
+                viewModel.Product = product;
+                viewModel.ProductCategories = productCategories.Collection();
+                return View(viewModel);
             }
         }
         [HttpPost]

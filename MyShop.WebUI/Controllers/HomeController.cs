@@ -1,10 +1,8 @@
 ﻿using MyShop.Core.Contracts;
 using MyShop.Core.Models;
 using MyShop.Core.ViewModels;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace MyShop.WebUI.Controllers
@@ -14,10 +12,10 @@ namespace MyShop.WebUI.Controllers
         IRepository<Product> context;
         IRepository<ProductCategory> productCategories;
 
-        public HomeController(IRepository<Product> _context, IRepository<ProductCategory> _productCategories)
+        public HomeController(IRepository<Product> productContext, IRepository<ProductCategory> productCategoryContext)
         {
-            context = _context;
-            productCategories = _productCategories;
+            context = productContext;
+            productCategories = productCategoryContext;
         }
 
         public ActionResult Index(string Category=null)
@@ -38,23 +36,6 @@ namespace MyShop.WebUI.Controllers
             model.ProductsCategories = categories;
 
             return View(model);
-
-            //ProductListViewModel model = new ProductListViewModel();
-            //List<Product> _products;
-            //List<ProductCategory> categories = productCategories.Collection().ToList();
-
-            //if (_Category==null)
-            //{
-            //    _products = context.Collection().ToList();
-            //}
-            //else
-            //{
-            //    _products = context.Collection().Where(p => p.Category == _Category).ToList();
-            //}
-
-            //model.Products = _products;
-            //model.ProductCategories = categories;
-            //return View(model);
         }
 
         public ActionResult Details(string Id)

@@ -98,6 +98,7 @@ namespace MyShop.WebUI.Controllers
         public ActionResult ConfirmDelete(string Id)
         {
             ProductCategory productCategoryToDelete = context.Find(Id);
+
             if (productCategoryToDelete == null)
             {
                 return HttpNotFound();
